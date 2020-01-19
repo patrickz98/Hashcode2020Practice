@@ -120,6 +120,8 @@ func main() {
 	// inputFile := "d_quite_big"
 	// inputFile := "e_also_big"
 
+	// submit(inputFile)
+
 	inputFiles := []string{
 		"a_example",
 		"b_small",
@@ -131,7 +133,6 @@ func main() {
 	missing := 0
 
 	for _, file := range inputFiles {
-
 		missing += submit(file)
 	}
 
