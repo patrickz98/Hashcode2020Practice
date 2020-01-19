@@ -11,13 +11,7 @@ func containsInt(array []int, search int) bool {
 	return i < len(array) && array[i] == search
 }
 
-func main() {
-
-	// inputFile := "a_example"
-	// inputFile := "b_small"
-	// inputFile := "c_medium"
-	// inputFile := "d_quite_big"
-	inputFile := "e_also_big"
+func submit(inputFile string) int {
 
 	constrains := order.New(inputFile)
 
@@ -111,14 +105,20 @@ func main() {
 
 	sort.Ints(indices)
 
-	fmt.Println("gains", gains)
-
 	score := constrains.Submission(indices)
 	fmt.Println("Score", score)
 	fmt.Println("Missing", constrains.SlicesMaximum-score)
+
+	return constrains.SlicesMaximum - score
 }
 
-func mainn() {
+func main() {
+
+	// inputFile := "a_example"
+	// inputFile := "b_small"
+	// inputFile := "c_medium"
+	// inputFile := "d_quite_big"
+	// inputFile := "e_also_big"
 
 	inputFiles := []string{
 		"a_example",
@@ -128,35 +128,12 @@ func mainn() {
 		"e_also_big",
 	}
 
-	scoreTotal := 0
+	missing := 0
 
 	for _, file := range inputFiles {
 
-		fmt.Println("File", file)
-		constrains := order.New(file)
-
-		fmt.Println("SlicesMaximum", constrains.SlicesMaximum)
-		// fmt.Println("Slices", constrains.Slices)
-
-		sum := 0
-		indices := make([]int, 0)
-
-		for inx := 0; inx < constrains.Size; inx++ {
-
-			item := constrains.Slices[constrains.Size-inx-1]
-
-			if sum+item < constrains.SlicesMaximum {
-				sum += item
-				indices = append(indices, constrains.Size-inx-1)
-			}
-		}
-
-		score := constrains.Score(indices)
-		fmt.Println("Score", score)
-		fmt.Println("Missing", constrains.SlicesMaximum-score)
-
-		scoreTotal += constrains.SlicesMaximum - score
+		missing += submit(file)
 	}
 
-	fmt.Println("Total Score", scoreTotal)
+	fmt.Println("Total missing", missing)
 }
