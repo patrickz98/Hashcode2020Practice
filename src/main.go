@@ -151,7 +151,7 @@ func mainn() {
 			}
 		}
 
-		score := constrains.Submission(indices)
+		score := constrains.Score(indices)
 		fmt.Println("Score", score)
 		fmt.Println("Missing", constrains.SlicesMaximum-score)
 

@@ -83,6 +83,10 @@ func New(inputFile string) Constrains {
 
 	pizzaSlices := make([]int, typesOfPizza)
 
+	if typesOfPizza != len(pizzaParts) {
+		panic("typesOfPizza != len(pizzaParts)")
+	}
+
 	for inx, pizzaStr := range pizzaParts {
 
 		pizzaSlice, err := strconv.Atoi(pizzaStr)
