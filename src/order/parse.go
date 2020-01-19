@@ -16,6 +16,17 @@ type Constrains struct {
 
 const submissonPath = "submisson"
 
+func (cons Constrains) Score(indices []int) int {
+
+	sum := 0
+
+	for _, index := range indices {
+		sum += cons.Slices[index]
+	}
+
+	return sum
+}
+
 func (cons Constrains) Submission(indices []int) int {
 
 	sum := 0
@@ -23,9 +34,17 @@ func (cons Constrains) Submission(indices []int) int {
 	submissonTxt := strconv.Itoa(len(indices)) + "\n"
 	indicesStr := make([]string, len(indices))
 
+	integrity := make(map[int]bool)
+
 	for inx, index := range indices {
 		sum += cons.Slices[index]
 		indicesStr[inx] = strconv.Itoa(index)
+
+		if !integrity[index] {
+			integrity[index] = true
+		} else {
+			panic("index: " + strconv.Itoa(index))
+		}
 	}
 
 	submissonTxt += strings.Join(indicesStr, " ") + "\n"
