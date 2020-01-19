@@ -13,11 +13,11 @@ func containsInt(array []int, search int) bool {
 
 func main() {
 
-	inputFile := "a_example"
+	// inputFile := "a_example"
 	// inputFile := "b_small"
 	// inputFile := "c_medium"
 	// inputFile := "d_quite_big"
-	// inputFile := "e_also_big"
+	inputFile := "e_also_big"
 
 	constrains := order.New(inputFile)
 
