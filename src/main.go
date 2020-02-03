@@ -11,7 +11,7 @@ func containsInt(array []int, search int) bool {
 	return i < len(array) && array[i] == search
 }
 
-func submit(inputFile string) int {
+func submit(inputFile string) (int, int) {
 
 	constrains := order.New(inputFile)
 
@@ -106,10 +106,11 @@ func submit(inputFile string) int {
 	sort.Ints(indices)
 
 	score := constrains.Submission(indices)
+	fmt.Println("inputFile", inputFile)
 	fmt.Println("Score", score)
 	fmt.Println("Missing", constrains.SlicesMaximum-score)
 
-	return constrains.SlicesMaximum - score
+	return constrains.SlicesMaximum, score
 }
 
 func main() {
@@ -130,11 +131,15 @@ func main() {
 		"e_also_big",
 	}
 
+	totalScore := 0
 	missing := 0
 
 	for _, file := range inputFiles {
-		missing += submit(file)
+		max, score := submit(file)
+		missing += max - score
+		totalScore += score
 	}
 
+	fmt.Println("Total score", totalScore)
 	fmt.Println("Total missing", missing)
 }
